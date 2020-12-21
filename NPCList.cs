@@ -32,6 +32,7 @@ public class NPCList : MonoBehaviour
         else
         {
             Debug.Log("NPC Abis");
+            GameObject.Find("Level").GetComponent<Level>().ubahStatus("endGame");
         }
     }
 }

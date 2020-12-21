@@ -24,6 +24,7 @@ public class Slot : MonoBehaviour, IDropHandler{
                     namaBarang.GetComponent<Item>().onSlot = gameObject;
                     namaBarang.transform.SetParent(GameObject.Find("Barang").GetComponent<Transform>());
                     namaBarang.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+                    eventData.pointerDrag.GetComponent<DragDrop>().isRight = true;
                 }
             }
             else if (GameObject.Find("Level").GetComponent<Level>().getStatus() == "pilihHarga"){

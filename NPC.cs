@@ -27,7 +27,7 @@ public class NPC : MonoBehaviour
     public void pesananSelesai()
     {
         GameObject.Find("NPCList").GetComponent<NPCList>().getNPC();
-        GameObject.Find("Level").GetComponent<Level>().ubahStatus("idle");
+        //GameObject.Find("Level").GetComponent<Level>().ubahStatus("idle");
         Order.SetActive(false);
     }
 }

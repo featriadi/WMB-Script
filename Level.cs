@@ -9,6 +9,7 @@ public class Level : MonoBehaviour
     [SerializeField] private GameObject scenePilihBarang;
     [SerializeField] private GameObject scenePilihHarga;
     [SerializeField] private GameObject scenePilihKembalian;
+    [SerializeField] private GameObject endGame;
     private string status;
 
     // Start is called before the first frame update
@@ -16,12 +17,13 @@ public class Level : MonoBehaviour
     {
         NPC.SetActive(true);
         Player.SetActive(true);
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ubahStatus(string status)
@@ -55,10 +57,13 @@ public class Level : MonoBehaviour
         }
         else
         {
-            Debug.Log("Scene Idle");
             scenePilihBarang.SetActive(false);
             scenePilihHarga.SetActive(false);
             scenePilihKembalian.SetActive(false);
+            Player.transform.GetChild(1).gameObject.SetActive(false);
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            endGame.SetActive(true);
+            endGame.GetComponent<EndGame>().endGame();
         }
     }
 

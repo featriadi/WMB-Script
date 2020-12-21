@@ -53,4 +53,9 @@ public class Player : MonoBehaviour
     {
         nyawa -= 1;
     }
+
+    public int getNyawa()
+    {
+        return nyawa;
+    }
 }

@@ -12,6 +12,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    public bool isRight;
     public Vector2 startPosition;
 
     private void Awake()
@@ -22,6 +23,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        isRight = false;
         startPosition = transform.position;
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
@@ -37,7 +39,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
-        if (eventData.pointerDrag.GetComponent<Item>().onSlot == false)
+        if (isRight == false)
         {
             transform.position = startPosition;
         }
