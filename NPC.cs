@@ -11,12 +11,8 @@ public class NPC : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(nama + " jalan ke warung");
-        Debug.Log(nama + " punya duit " + uang);
-        gameObject.GetComponent<Movement>().datang();
-        Order.SetActive(true);
         Dialogue.SetActive(true);
-        GameObject.Find("Level").GetComponent<Level>().ubahStatus("pilihBarang");
+        Order.SetActive(true);
     }
 
     void Update()
@@ -24,10 +20,27 @@ public class NPC : MonoBehaviour
 
     }
 
-    public void pesananSelesai()
-    {
+    public void pesananSelesai(){
         GameObject.Find("NPCList").GetComponent<NPCList>().getNPC();
-        //GameObject.Find("Level").GetComponent<Level>().ubahStatus("idle");
         Order.SetActive(false);
+    }
+
+    public void statusOrder(){
+        if (GameObject.Find("Level").GetComponent<Level>().getStatus() == "pilihBarang"){
+            Order.GetComponent<Order>().SlotBarang.SetActive(true);
+            Order.GetComponent<Order>().SlotHargaBarang.SetActive(false);
+            Order.GetComponent<Order>().SlotKembalian.SetActive(false);
+        }
+        else if (GameObject.Find("Level").GetComponent<Level>().getStatus() == "pilihHarga"){
+            Order.GetComponent<Order>().SlotBarang.SetActive(false);
+            Order.GetComponent<Order>().SlotHargaBarang.SetActive(true);
+            Order.GetComponent<Order>().SlotKembalian.SetActive(false);
+        }
+        else if (GameObject.Find("Level").GetComponent<Level>().getStatus() == "pilihKembalian")
+        {
+            Order.GetComponent<Order>().SlotBarang.SetActive(false);
+            Order.GetComponent<Order>().SlotHargaBarang.SetActive(false);
+            Order.GetComponent<Order>().SlotKembalian.SetActive(true);
+        }
     }
 }

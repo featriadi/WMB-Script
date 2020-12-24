@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level : MonoBehaviour
-{
+public class Level : MonoBehaviour{
     [SerializeField] private GameObject NPC;
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject scenePilihBarang;
@@ -12,51 +11,50 @@ public class Level : MonoBehaviour
     [SerializeField] private GameObject endGame;
     private string status;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        NPC.SetActive(true);
-        Player.SetActive(true);
+    void Start(){
+        statusLevel("idle");
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        Player.SetActive(true);
+        NPC.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+    public string getStatus(){
+        return this.status;
     }
 
-    public void ubahStatus(string status)
-    {
+    public void statusLevel(string status){
         this.status = status;
-        cekStatus();
-    }
 
-    public void cekStatus()
-    {
-        if (status == "pilihBarang")
-        {
+        if (this.status == "pilihBarang"){
             Debug.Log("Scene Pilih Barang");
             scenePilihBarang.SetActive(true);
             scenePilihHarga.SetActive(false);
             scenePilihKembalian.SetActive(false);
+            GameObject.Find("NPC").GetComponent<NPC>().statusOrder();
         }
-        else if (status == "pilihHarga")
-        {
+        else if (this.status == "pilihHarga"){
             Debug.Log("Scene Pilih Harga");
             scenePilihBarang.SetActive(false);
             scenePilihHarga.SetActive(true);
             scenePilihKembalian.SetActive(false);
+            GameObject.Find("Dialogue").GetComponent<Dialogue>().KalimatSelanjutnya();
+            GameObject.Find("NPC").GetComponent<NPC>().statusOrder();
         }
-        else if (status == "pilihKembalian")
-        {
+        else if (this.status == "pilihKembalian"){
             Debug.Log("Scene Pilih Kembalian");
             scenePilihBarang.SetActive(false);
             scenePilihHarga.SetActive(false);
             scenePilihKembalian.SetActive(true);
+            GameObject.Find("Dialogue").GetComponent<Dialogue>().KalimatSelanjutnya();
+            GameObject.Find("NPC").GetComponent<NPC>().statusOrder();
         }
-        else
-        {
+        else if (this.status == "idle"){
+            Debug.Log("Idle");
+            scenePilihBarang.SetActive(false);
+            scenePilihHarga.SetActive(false);
+            scenePilihKembalian.SetActive(false);
+        }
+        else{
             scenePilihBarang.SetActive(false);
             scenePilihHarga.SetActive(false);
             scenePilihKembalian.SetActive(false);
@@ -65,10 +63,5 @@ public class Level : MonoBehaviour
             endGame.SetActive(true);
             endGame.GetComponent<EndGame>().endGame();
         }
-    }
-
-    public string getStatus()
-    {
-        return this.status;
     }
 }

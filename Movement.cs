@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private Vector2 target;
-
-    // Start is called before the first frame update
+    [SerializeField] Vector2 target;
+    private Vector2 awal;
+    private float speed = 10f;
+    
     void Start()
     {
-        
+        //LeanTween.moveX(gameObject, 300, 2);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -20,7 +20,10 @@ public class Movement : MonoBehaviour
 
     public void datang(){
         Debug.Log("Pindah dulu gaes");
-        //gameObject.GetComponent<Image>().pergi.transform.position = Vector2.MoveTowards(gameObject.GetComponent<Image>().pergi.transform.position, gameObject.GetComponent<Image>().datang.transform.position, 0.1);
+        //LeanTween.moveX(gameObject, 300, 2);
+        //gameObject.transform.GetChild(2).gameObject.SetActive(true);
+        //gameObject.transform.GetChild(2).gameObject.GetComponent<Dialogue>().datang();
+        //pindah tempat
     }
 
     public void pergi() { 
