@@ -18,6 +18,16 @@ public class Level : MonoBehaviour{
         NPC.SetActive(true);
     }
 
+    void Update()
+    {
+        if(Player.GetComponent<Player>().getNyawa() == 0)
+        {
+            endGame.SetActive(true);
+            endGame.GetComponent<EndGame>().endGame();
+        }
+        
+    }
+
     public string getStatus(){
         return this.status;
     }
@@ -30,6 +40,7 @@ public class Level : MonoBehaviour{
             scenePilihBarang.SetActive(true);
             scenePilihHarga.SetActive(false);
             scenePilihKembalian.SetActive(false);
+            Player.transform.GetChild(2).gameObject.SetActive(true);
             GameObject.Find("NPC").GetComponent<NPC>().statusOrder();
         }
         else if (this.status == "pilihHarga"){
@@ -37,7 +48,8 @@ public class Level : MonoBehaviour{
             scenePilihBarang.SetActive(false);
             scenePilihHarga.SetActive(true);
             scenePilihKembalian.SetActive(false);
-            GameObject.Find("Dialogue").GetComponent<Dialogue>().KalimatSelanjutnya();
+            GameObject.Find("NPC").transform.GetChild(2).gameObject.GetComponent<Dialogue>().KalimatSelanjutnya();
+            Player.transform.GetChild(2).gameObject.GetComponent<Dialogue>().KalimatSelanjutnya();
             GameObject.Find("NPC").GetComponent<NPC>().statusOrder();
         }
         else if (this.status == "pilihKembalian"){
@@ -45,7 +57,8 @@ public class Level : MonoBehaviour{
             scenePilihBarang.SetActive(false);
             scenePilihHarga.SetActive(false);
             scenePilihKembalian.SetActive(true);
-            GameObject.Find("Dialogue").GetComponent<Dialogue>().KalimatSelanjutnya();
+            GameObject.Find("NPC").transform.GetChild(2).gameObject.GetComponent<Dialogue>().KalimatSelanjutnya();
+            Player.transform.GetChild(2).gameObject.GetComponent<Dialogue>().KalimatSelanjutnya();
             GameObject.Find("NPC").GetComponent<NPC>().statusOrder();
         }
         else if (this.status == "idle"){
@@ -59,6 +72,7 @@ public class Level : MonoBehaviour{
             scenePilihHarga.SetActive(false);
             scenePilihKembalian.SetActive(false);
             Player.transform.GetChild(1).gameObject.SetActive(false);
+            Player.transform.GetChild(2).gameObject.SetActive(false);
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
             endGame.SetActive(true);
             endGame.GetComponent<EndGame>().endGame();

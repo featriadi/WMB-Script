@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         pauseButton.SetActive(true);
         GameIsPaused = false;
+        GameObject.Find("NPC").GetComponent<Animator>().enabled = true;
+        GameObject.Find("Player").GetComponent<Animator>().enabled = true;
     }
 
     public void pause()
@@ -21,6 +23,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         pauseButton.SetActive(false);
         GameIsPaused = true;
+        GameObject.Find("NPC").GetComponent<Animator>().enabled = false;
+        GameObject.Find("Player").GetComponent<Animator>().enabled = false;
     }
 
     public void restart()

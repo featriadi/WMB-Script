@@ -2,27 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
-{
+public class NPC : MonoBehaviour {
     public GameObject Order;
     public GameObject Dialogue;
     public string nama;
     public int uang;
 
-    void Start()
-    {
+    void Start(){
         Dialogue.SetActive(true);
         Order.SetActive(true);
-    }
-
-    void Update()
-    {
-
-    }
-
-    public void pesananSelesai(){
-        GameObject.Find("NPCList").GetComponent<NPCList>().getNPC();
-        Order.SetActive(false);
     }
 
     public void statusOrder(){
@@ -42,5 +30,10 @@ public class NPC : MonoBehaviour
             Order.GetComponent<Order>().SlotHargaBarang.SetActive(false);
             Order.GetComponent<Order>().SlotKembalian.SetActive(true);
         }
+    }
+
+    public void pesananSelesai(){
+        GameObject.Find("NPCList").GetComponent<NPCList>().getNPC();
+        Order.SetActive(false);
     }
 }

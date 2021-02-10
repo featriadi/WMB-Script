@@ -6,52 +6,53 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     private int nyawa;
-    private int jumlahNyawa;
 
-    public Image[] bintang;
-    public Sprite fullBintang;
-    public Sprite emptyBintang;
+    public Image[] hati;
+    public Sprite fullHati;
+    public Sprite emptyHati;
 
     // Start is called before the first frame update
     void Start()
     {
         nyawa = 3;
-        jumlahNyawa = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (nyawa > jumlahNyawa)
+        if (nyawa > 3)
         {
-            nyawa = jumlahNyawa;
+            nyawa = hati.Length;
         }
 
-        for (int i = 0; i < bintang.Length; i++)
+        for (int i = 0; i < hati.Length; i++)
         {
             if (i < nyawa)
             {
-                bintang[i].sprite = fullBintang;
+                hati[i].sprite = fullHati;
             }
             else
             {
-                bintang[i].sprite = emptyBintang;
+                hati[i].sprite = emptyHati;
             }
 
-            if (i < jumlahNyawa)
+            if (i < hati.Length)
             {
-                bintang[i].enabled = true;
+                hati[i].enabled = true;
             }
             else
             {
-                bintang[i].enabled = false;
+                hati[i].enabled = false;
             }
         }
     }
 
     public void kurangNyawa()
     {
-        nyawa -= 1;
+        if (nyawa > 0)
+        {
+            nyawa -= 1;
+        }
     }
 
     public int getNyawa()

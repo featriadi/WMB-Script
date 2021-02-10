@@ -35,6 +35,7 @@ public class Slot : MonoBehaviour, IDropHandler {
                     item.GetComponent<Item>().onSlot = gameObject;
                 }
                 else{
+                    GameObject.Find("Level").GetComponent<Star>().kurangScore();
                     GameObject.Find("Player").GetComponent<Player>().kurangNyawa();
                 }
             }
@@ -48,6 +49,7 @@ public class Slot : MonoBehaviour, IDropHandler {
                     item.GetComponent<Item>().onSlot = gameObject;
                 }
                 else{
+                    GameObject.Find("Level").GetComponent<Star>().kurangScore();
                     GameObject.Find("Player").GetComponent<Player>().kurangNyawa();
                 }
             }

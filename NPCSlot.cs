@@ -57,7 +57,7 @@ public class NPCSlot : MonoBehaviour
                 Destroy(Slot[j].GetComponent<Slot>().namaBarang);
                 Slot[j].GetComponent<Slot>().namaBarang = null;
             }
-            GameObject.Find("Player").GetComponent<Player>().kurangNyawa();
+            GameObject.Find("Level").GetComponent<Star>().kurangScore();
         }
 
         tempDaftarBarang.Clear();

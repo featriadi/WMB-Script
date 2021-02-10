@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Order : MonoBehaviour{
+public class Order : MonoBehaviour {
     public List<string> Barang;
     private List<string> tempSlot;
     public GameObject SlotBarang;
@@ -34,6 +34,7 @@ public class Order : MonoBehaviour{
 
         else if (GameObject.Find("Level").GetComponent<Level>().getStatus() == "pilihHarga"){
             if (SlotHargaBarang.GetComponent<SlotBarang>().Slot[0].GetComponent<Slot>().namaBarang != null){
+                GameObject.Find("Level").GetComponent<Star>().tambahScore();
                 if (GameObject.Find("NPC").GetComponent<NPC>().uang != jumlahHarga){
                     GameObject.Find("Level").GetComponent<Level>().statusLevel("pilihKembalian");
                 }
@@ -45,6 +46,7 @@ public class Order : MonoBehaviour{
 
         else if (GameObject.Find("Level").GetComponent<Level>().getStatus() == "pilihKembalian"){
             if (SlotKembalian.GetComponent<SlotBarang>().Slot[0].GetComponent<Slot>().namaBarang != null){
+                GameObject.Find("Level").GetComponent<Star>().tambahScore();
                 GameObject.Find("NPC").GetComponent<NPC>().pesananSelesai();
             }
         }
@@ -63,6 +65,7 @@ public class Order : MonoBehaviour{
             for (int i = 0; i < SlotBarang.GetComponent<SlotBarang>().Slot.Count; i++){
                 jumlahHarga += SlotBarang.GetComponent<SlotBarang>().Slot[i].GetComponent<Slot>().namaBarang.GetComponent<Item>().jumlah;
             }
+            GameObject.Find("Level").GetComponent<Star>().tambahScore();
             GameObject.Find("Level").GetComponent<Level>().statusLevel("pilihHarga");
         }
         else{
@@ -70,6 +73,7 @@ public class Order : MonoBehaviour{
                 Destroy(SlotBarang.GetComponent<SlotBarang>().Slot[j].GetComponent<Slot>().namaBarang);
                 SlotBarang.GetComponent<SlotBarang>().Slot[j].GetComponent<Slot>().namaBarang = null;
             }
+            GameObject.Find("Level").GetComponent<Star>().kurangScore();
             GameObject.Find("Player").GetComponent<Player>().kurangNyawa();
         }
 
