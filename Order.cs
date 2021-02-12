@@ -35,6 +35,7 @@ public class Order : MonoBehaviour {
         else if (GameObject.Find("Level").GetComponent<Level>().getStatus() == "pilihHarga"){
             if (SlotHargaBarang.GetComponent<SlotBarang>().Slot[0].GetComponent<Slot>().namaBarang != null){
                 GameObject.Find("Level").GetComponent<Star>().tambahScore();
+                GameObject.Find("Level").GetComponent<Star>().tambahScore();
                 if (GameObject.Find("NPC").GetComponent<NPC>().uang != jumlahHarga){
                     GameObject.Find("Level").GetComponent<Level>().statusLevel("pilihKembalian");
                 }
@@ -46,6 +47,7 @@ public class Order : MonoBehaviour {
 
         else if (GameObject.Find("Level").GetComponent<Level>().getStatus() == "pilihKembalian"){
             if (SlotKembalian.GetComponent<SlotBarang>().Slot[0].GetComponent<Slot>().namaBarang != null){
+                GameObject.Find("Level").GetComponent<Star>().tambahScore();
                 GameObject.Find("Level").GetComponent<Star>().tambahScore();
                 GameObject.Find("NPC").GetComponent<NPC>().pesananSelesai();
             }
@@ -73,7 +75,6 @@ public class Order : MonoBehaviour {
                 Destroy(SlotBarang.GetComponent<SlotBarang>().Slot[j].GetComponent<Slot>().namaBarang);
                 SlotBarang.GetComponent<SlotBarang>().Slot[j].GetComponent<Slot>().namaBarang = null;
             }
-            GameObject.Find("Level").GetComponent<Star>().kurangScore();
             GameObject.Find("Player").GetComponent<Player>().kurangNyawa();
         }
 
