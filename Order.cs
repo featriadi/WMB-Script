@@ -68,7 +68,12 @@ public class Order : MonoBehaviour {
                 jumlahHarga += SlotBarang.GetComponent<SlotBarang>().Slot[i].GetComponent<Slot>().namaBarang.GetComponent<Item>().jumlah;
             }
             GameObject.Find("Level").GetComponent<Star>().tambahScore();
-            GameObject.Find("Level").GetComponent<Level>().statusLevel("pilihHarga");
+            if (GameObject.Find("NPC").GetComponent<NPC>().uang > jumlahHarga){
+                GameObject.Find("Level").GetComponent<Level>().statusLevel("pilihKembalian");
+            }
+            else{
+                GameObject.Find("Level").GetComponent<Level>().statusLevel("pilihHarga");
+            }
         }
         else{
             for (int j = 0; j < SlotBarang.GetComponent<SlotBarang>().Slot.Count; j++){
